@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/my-style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+	<title>Chefs</title>
+</head>
+<body>
+	<section class="header-chef">
+		<nav>
+			<img src="images/logo-catering1.png">
+			<div class="nav-links">
+				<ul>
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="text-box">
+			<form th:action="@{/chefs}" method="post" th:object="${chef}">
+				<div>
+					nome: <input type="text" th:field="*{nome}" />
+				</div>
+				<div>
+					cognome: <input type="text" th:field="*{cognome}" />
+				</div>
+				<div>
+					nazionalita: <input type="text" th:field="*{nazionalita}" />
+				</div>
+				<div><button type="submit" />Conferma</button></div>
+			</form>
+		</div>
+		<div class="text-box-list">
+			<h4>Elenco chef:</h4>
+			<ul>
+				<li th:each="chef : ${chefs}">
+				<a th:text="${chef.nome} + ' ' + ${chef.cognome} + ' ' + ${chef.nazionalita}">Paolo Rossi Italiana</a>
+				<a th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"><button>cancella</button></li>
+				
+			</ul>
+		</div>
+	</section>
+	<footer>
+		footer da cambiare
+	</footer>
+</body>
+</html>
