@@ -32,4 +32,13 @@ public class IngredienteService {
 		}
 		return ingredienti;
 	}
+	
+	public boolean alreadyExists(Ingrediente  ingrediente) {
+		return ingredienteRepository.existsByNomeAndDescrizioneAndOrigine(ingrediente.getNome(), ingrediente.getDescrizione(), ingrediente.getOrigine());
+	}
+
+	public void removeById(Long id) {
+		ingredienteRepository.deleteById(id);
+	}
+
 }

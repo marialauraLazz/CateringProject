@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.service.ChefService;
 import it.uniroma3.siw.catering.validator.ChefValidator;
@@ -31,7 +32,7 @@ public class ChefController {
 		model.addAttribute("chef", new Chef());
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "chefs.html";
+		return "chefForm.html";
 	}
 	
 	@PostMapping("/chefs")
@@ -42,7 +43,16 @@ public class ChefController {
 			model.addAttribute("chef", chef);
 			return "redirect:/chefs";
 		}
-		return "chefs.html";
+		List<Chef>chefs=chefService.findAll();
+		model.addAttribute("chefs", chefs);
+		return "chefForm.html";
+	}
+	
+	@GetMapping("/chef/{id}")
+	public String getchef(@PathVariable("id") Long id, Model model) {
+		Chef chef=chefService.findById(id);
+		model.addAttribute("chef", chef);
+		return "chef.html";
 	}
 	
 	@GetMapping("/toDeleteChef/{id}")

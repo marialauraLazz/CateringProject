@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/my-style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+	<title>Chefs</title>
+</head>
+<body>
+	<section class="header-buffet">
+		<nav>
+			<img src="images/logo-catering1.png">
+			<div class="nav-links">
+				<ul>
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="text-box">
+			<form th:action="@{/buffet}" method="post" th:object="${buffet}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
+				</div>
+				<div>
+					Nome: <input type="text" th:field="*{nome}" />
+					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+				<div>
+					Descrizione: <input type="text" th:field="*{descrizione}" />
+					<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+				</div>
+				<div>
+					Chef: <select type="text" th:field="*{chef}">
+						<th:block th:each="chef : ${chefs}"> 
+							<option th:text="${chef.nome} + ' ' + ${chef.cognome}" th:value="${chef.id}"/>
+						</th:block>
+					</select>
+					<div th:if="${#fields.hasErrors('chef')}" th:errors="*{chef}"></div>
+				</div>
+				<div><button type="submit" />Conferma</button></div>
+			</form>
+		</div>
+		<div class="text-box-list">
+			<h4>Elenco buffet:</h4>
+			<ul>
+				<li th:each="buffet : ${buffets}">
+				<a 
+				href="buffet.html"
+				th:href="@{'/buffet' + '/' + ${buffet.id}}"
+				th:text="${buffet.nome} + ' ' + ${buffet.descrizione} + ' ' + 'creato da' + ' ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Elite di Carne</a>
+				<a th:href="@{'/toDeleteBuffet' + '/' + ${buffet.id}}"><button>cancella</button></li>
+				
+			</ul>
+		</div>
+	</section>
+	<footer>
+		footer da cambiare
+	</footer>
+</body>
+</html>

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Piatto {
@@ -22,11 +23,12 @@ public class Piatto {
 	
 	private String descrizione;
 	
+	@NotNull
 	@ManyToOne
 	private Buffet buffet;
 	
 	@ManyToMany
-	private List<Ingrediente> ingerdienti;
+	private List<Ingrediente> ingredienti;
 
 	public Long getId() {
 		return Id;
@@ -60,12 +62,12 @@ public class Piatto {
 		this.buffet = buffet;
 	}
 
-	public List<Ingrediente> getIngerdienti() {
-		return ingerdienti;
+	public List<Ingrediente> getIngredienti() {
+		return ingredienti;
 	}
 
-	public void setIngerdienti(List<Ingrediente> ingerdienti) {
-		this.ingerdienti = ingerdienti;
+	public void setIngredienti(List<Ingrediente> ingredienti) {
+		this.ingredienti = ingredienti;
 	}
 	
 }

@@ -33,5 +33,13 @@ public class BuffetService {
 		}
 		return buffets;
 	}
+	
+	public void removeById(Long id) {
+		buffetRepository.deleteById(id);
+	}
+
+	public boolean alreadyExists(Buffet buffet) {
+		return buffetRepository.existsByNomeAndDescrizione(buffet.getNome(), buffet.getDescrizione());
+	}
 
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/my-style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+	<title>piatti</title>
+</head>
+<body>
+	<section class="header-piatto">
+		<nav>
+			<img src="images/logo-catering1.png">
+			<div class="nav-links">
+				<ul>
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="text-box">
+			<form th:action="@{/piatto}" method="post" th:object="${piatto}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
+				</div>
+				<div>
+					Nome: <input type="text" th:field="*{nome}" />
+					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+				<div>
+					Descrizione: <input type="text" th:field="*{descrizione}" />
+					<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+				</div>
+				<div>
+					Buffet: <select type="text" th:field="*{buffet}">
+						<th:block th:each="buffet : ${buffets}"> 
+							<option th:text="${buffet.nome} + ' ' + ${buffet.descrizione} + ' ' + 'creato da' + ' ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}" th:value="${buffet.id}"/>
+						</th:block>
+					</select>
+					<div th:if="${#fields.hasErrors('buffet')}" th:errors="*{buffet}"></div>
+				</div>
+				<div>
+					Ingredienti:
+						<th:block th:each="ingrediente : ${ingredienti}" th:field="*{ingredienti}"> 
+							<input type="checkbox" th:text="${ingrediente.nome} + ' ' + ${ingrediente.descrizione}" th:value="${ingrediente.id}"/>
+						</th:block>
+						<div th:if="${#fields.hasErrors('ingredienti')}" th:errors="*{ingredienti}"></div>
+				</div>
+				<div><button type="submit" />Conferma</button></div>
+			</form>
+		</div>
+		<div class="text-box-list">
+			<h4>Elenco piatti:</h4>
+			<ul>
+				<li th:each="piatto : ${piatti}">
+				<a 
+				href="piatto.html"
+				th:href="@{'/piatto' + '/' + ${piatto.id}}"
+				th:text="${piatto.nome} + ' ' + ${piatto.descrizione}">origano profumato</a>
+				<a th:href="@{'/toDeletePiatto' + '/' + ${piatto.id}}"><button>cancella</button></li>
+				
+			</ul>
+		</div>
+	</section>
+	<footer>
+		footer da cambiare
+	</footer>
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.repository.PiattoRepository;
 
@@ -31,5 +32,13 @@ public class PiattoService {
 			piatti.add(piatto);
 		}
 		return piatti;
+	}
+	
+	public boolean alreadyExists(Piatto  piatto) {
+		return piattoRepository.existsByNomeAndDescrizione(piatto.getNome(), piatto.getDescrizione());
+	}
+
+	public void removeById(Long id) {
+		piattoRepository.deleteById(id);
 	}
 }

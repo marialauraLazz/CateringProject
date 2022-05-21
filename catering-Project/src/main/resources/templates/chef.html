@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/my-style.css">
+<link rel="stylesheet" href="../css/my-style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap"
 	rel="stylesheet">
-<title>Home</title>
+<title>chef dettagli</title>
 </head>
 <body>
-	<section class="header">
+	<section class="header-buffet">
 		<nav>
-			<img src="images/logo-catering1.png">
+			<img src="../images/logo-catering1.png">
 			<div class="nav-links">
 				<ul>
 					<li><a href="/">HOME</a></li>
-					<li><a th:href="@{/chefs}">CHEFS</a></li>
-					<li><a th:href="@{/buffet}">BUFFETS</a></li>
-					<li><a th:href="@{/ingrediente}">INGREDIENTI</a></li>
-					<li><a th:href="@{/piatto}">PIATTI</a></li>
 				</ul>
 			</div>
 		</nav>
-		<div class="text-box">
-			<h1>CateringML!!</h1>
-			<p>blablablablblablablb</p>
+		<div class="dettaglio-list">
+			<h4>Dettagli chef</h4>
+			<div>
+				<div th:text="${chef.nome} + ' ' + ${chef.cognome} + ' ' + ${chef.nazionalita}"></div>
+				Buffet:<div th:each="buffet : ${chef.buffet}">
+				<a th:text="${buffet.nome}"></a>
+				</div>
+			</div>
 		</div>
 	</section>
 	<footer> footer da cambiare </footer>

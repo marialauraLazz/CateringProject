@@ -5,23 +5,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.siw.catering.model.Chef;
-import it.uniroma3.siw.catering.service.ChefService;
+import it.uniroma3.siw.catering.model.Piatto;
+import it.uniroma3.siw.catering.service.PiattoService;
 
 @Component
-public class ChefValidator implements Validator{
+public class PiattoValidator implements Validator{
 	
 	@Autowired
-	private ChefService chefService;
+	private PiattoService piattoService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Chef.class.equals(clazz);
+		return Piatto.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		if(this.chefService.alreadyExists((Chef)target)){
+		if(this.piattoService.alreadyExists((Piatto)target)){
 			errors.reject("elemento.duplicato");
 		}
 	}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/my-style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+	<title>ingredienti</title>
+</head>
+<body>
+	<section class="header-ingrediente">
+		<nav>
+			<img src="images/logo-catering1.png">
+			<div class="nav-links">
+				<ul>
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="text-box">
+			<form th:action="@{/ingrediente}" method="post" th:object="${ingrediente}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
+				</div>
+				<div>
+					Nome: <input type="text" th:field="*{nome}" />
+					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+				<div>
+					Descrizione: <input type="text" th:field="*{descrizione}" />
+					<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+				</div>
+				<div>
+					Origine: <input type="text" th:field="*{origine}"/>
+					<div th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></div>
+				</div>
+				<div><button type="submit" />Conferma</button></div>
+			</form>
+		</div>
+		<div class="text-box-list">
+			<h4>Elenco ingredienti:</h4>
+			<ul>
+				<li th:each="ingrediente : ${ingredienti}">
+				<a th:text="${ingrediente.nome} + ' ' + ${ingrediente.descrizione} + ' ' + ${ingrediente.origine}">origano profumato italia</a>
+				<a th:href="@{'/toDeleteIngrediente' + '/' + ${ingrediente.id}}"><button>cancella</button></li>
+				
+			</ul>
+		</div>
+	</section>
+	<footer>
+		footer da cambiare
+	</footer>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/my-style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap"
+	rel="stylesheet">
+<title>piatt dettagli</title>
+</head>
+<body>
+	<section class="header-piatto">
+		<nav>
+			<img src="../images/logo-catering1.png">
+			<div class="nav-links">
+				<ul>
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="dettaglio-list">
+			<h4>Dettagli piatto</h4>
+			<div>
+				<span th:text="${piatto.nome}">carb</span> 
+				<span th:text="${piatto.descrizione}">Rossa</span>
+				Buffet:<div th:text="${piatto.buffet.nome}">sale</div>
+				Chef:<div th:text="${piatto.buffet.chef.nome} + ' ' + ${piatto.buffet.chef.cognome}">Marco</div>
+				Ingredienti:<div th:each="ingrediente : ${piatto.ingredienti}">
+				<a th:text="${ingrediente.nome}">origano</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer> footer da cambiare </footer>
+</body>
+</html>
