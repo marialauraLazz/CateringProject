@@ -7,7 +7,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap"
 	rel="stylesheet">
-<title>Chefs</title>
+<title>Modifica Chef</title>
 </head>
 <body>
 	<section class="header-chef">
@@ -20,7 +20,8 @@
 			</div>
 		</nav>
 		<div class="text-box">
-			<form th:action="@{/chefs}" method="post" th:object="${chef}">
+			<h1>Modifica chef:</h1>	
+			<form th:action="@{'/toEditChef' + '/' + ${chef.id}}" method="post" th:object="${chef}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
 				</div>
@@ -42,17 +43,6 @@
 					</button>
 				</div>
 			</form>
-		</div>
-		<div class="text-box-list">
-			<h4>Elenco chef:</h4>
-			<ul>
-				<li th:each="chef : ${chefs}">
-				<a href="chef.html"
-					th:href="@{'/chef' + '/' + ${chef.id}}"
-					th:text="${chef.nome} + ' ' + ${chef.cognome} + ' ' + ${chef.nazionalita}">Paolo Rossi Italiana</a> 
-					<a th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"><button>cancella</button></a>
-					<a th:href="@{'/toEditChef' + '/' + ${chef.id}}"><button>modifica</button></a></li>
-			</ul>
 		</div>
 	</section>
 	<footer> footer da cambiare </footer>
