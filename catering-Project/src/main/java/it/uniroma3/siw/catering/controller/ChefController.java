@@ -31,7 +31,7 @@ public class ChefController {
 		model.addAttribute("chef", new Chef());
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "chefForm.html";
+		return "chef/chefForm.html";
 	}
 	
 	@PostMapping("/chefs")
@@ -44,14 +44,14 @@ public class ChefController {
 		}
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "chefForm.html";
+		return "chef/chefForm.html";
 	}
 	
 	@GetMapping("/chef/{id}")
 	public String getchef(@PathVariable("id") Long id, Model model) {
 		Chef chef=chefService.findById(id);
 		model.addAttribute("chef", chef);
-		return "chef.html";
+		return "chef/chef.html";
 	}
 	
 	@GetMapping("/toDeleteChef/{id}")
@@ -64,7 +64,7 @@ public class ChefController {
 	public String getChefEdited(@PathVariable("id") Long id, Model model) {
 		Chef chef= chefService.findById(id);
 		model.addAttribute("chef", chef);
-		return "editChef.html";
+		return "chef/editChef.html";
 	}
 	
 	@PostMapping("/toEditChef/{id}")
@@ -79,7 +79,7 @@ public class ChefController {
 			chefService.save(chefDaModificare);
 			return "redirect:/chefs";
 		}
-		return "editChef.html";
+		return "chef/editChef.html";
 	}
 	
 }

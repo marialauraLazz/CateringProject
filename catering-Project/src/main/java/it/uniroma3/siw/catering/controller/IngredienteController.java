@@ -34,7 +34,7 @@ public class IngredienteController {
 		List<Ingrediente>ingredienti=ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
 		
-		return "ingredienteForm.html";
+		return "ingrediente/ingredienteForm.html";
 	}
 
 	@PostMapping("/ingrediente")
@@ -47,7 +47,7 @@ public class IngredienteController {
 		}
 		List<Ingrediente>ingredienti=ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
-		return "ingredienteForm.html";
+		return "ingrediente/ingredienteForm.html";
 	}
 
 	@GetMapping("/toDeleteIngrediente/{id}")

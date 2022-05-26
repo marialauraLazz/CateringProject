@@ -43,7 +43,7 @@ public class BuffetController {
 		
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "buffetForm.html";
+		return "buffet/buffetForm.html";
 	}
 	
 	@PostMapping("/buffet")
@@ -59,14 +59,14 @@ public class BuffetController {
 
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "buffetForm.html";
+		return "buffet/buffetForm.html";
 	}
 	
 	@GetMapping("/buffet/{id}")
 	public String getPiatto(@PathVariable("id") Long id, Model model) {
 		Buffet buffet=buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
-		return "buffet.html";
+		return "buffet/buffet.html";
 	}
 	
 	@GetMapping("/toDeleteBuffet/{id}")

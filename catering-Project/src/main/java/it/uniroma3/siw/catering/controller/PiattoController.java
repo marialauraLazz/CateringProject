@@ -49,7 +49,7 @@ public class PiattoController {
 		List<Ingrediente>ingredienti=ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
 		
-		return "piattoForm.html";
+		return "piatto/piattoForm.html";
 	}
 
 	@PostMapping("/piatto")
@@ -68,14 +68,14 @@ public class PiattoController {
 		
 		List<Ingrediente>ingredienti=ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
-		return "piattoForm.html";
+		return "piatto/piattoForm.html";
 	}
 	
 	@GetMapping("/piatto/{id}")
 	public String getPiatto(@PathVariable("id") Long id, Model model) {
 		Piatto piatto=piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		return "piatto.html";
+		return "piatto/piatto.html";
 	}
 
 	@GetMapping("/toDeletePiatto/{id}")
