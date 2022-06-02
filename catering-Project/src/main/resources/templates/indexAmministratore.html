@@ -15,27 +15,19 @@
 			<img src="images/logo-catering1.png">
 			<div class="nav-links">
 				<ul>
-					<li><a href="/">HOME</a></li>
-					<li><a th:href="@{/chefUtente}">CHEFS</a></li>
-					<li><a th:href="@{/buffetUtente}">BUFFETS</a></li>
-					<li><a th:href="@{/ingredienteUtente}">INGREDIENTI</a></li>
-					<li><a th:href="@{/piattoUtente}">PIATTI</a></li>
-					<li><a th:href="@{/login}">LOGIN</a></li>
-					<li><a th:href="@{/register}">REGISTER</a></li>
+					<li><a href="/default">HOME</a></li>
+					<li><a th:href="@{/admin/chefs}">CHEFS</a></li>
+					<li><a th:href="@{/admin/buffet}">BUFFETS</a></li>
+					<li><a th:href="@{/admin/ingrediente}">INGREDIENTI</a></li>
+					<li><a th:href="@{/admin/piatto}">PIATTI</a></li>
+					<li><a th:href="@{/logout}">LOGout</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div class="text-box">
 			<h1>CateringML!!</h1>
+			<p>AMMINISTRATORE</p>
 		</div>
-	</section>
-	<section class="about-us">
-	<div class="text-box">
-		<img src="/images/buffet.jpg" width="40%">
-		<h1>Su di noi:</h1>
-		<p>Offriamo servizi ricercati nel settore del catering, dalla preparazione di sala al wedding & banqueting.
-			Ogni evento &egrave un momento saliente di una storia.</p>
-	</div>
 	</section>
 	<footer> Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 | Created by: Marialaura Lazzaro </footer>
 </body>

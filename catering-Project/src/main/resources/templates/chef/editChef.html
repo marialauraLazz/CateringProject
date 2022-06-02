@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../css/my-style.css">
+<link rel="stylesheet" href="../../css/my-style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -12,16 +12,16 @@
 <body>
 	<section class="header-chef">
 		<nav>
-			<img src="../images/logo-catering1.png">
+			<img src="../../images/logo-catering1.png">
 			<div class="nav-links">
 				<ul>
-					<li><a href="/">HOME</a></li>
+					<li><a href="/default">HOME</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div class="text-box">
 			<h1>Modifica chef:</h1>	
-			<form th:action="@{'/toEditChef' + '/' + ${chef.id}}" method="post" th:object="${chef}">
+			<form th:action="@{'/admin/toEditChef' + '/' + ${chef.id}}" method="post" th:object="${chef}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
 				</div>
@@ -38,13 +38,13 @@
 					<div th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></div>
 				</div>
 				<div>
-					<button type="submit" />
+					<button type="submit" >
 					Conferma
 					</button>
 				</div>
 			</form>
 		</div>
 	</section>
-	<footer> footer da cambiare </footer>
+	<footer> Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 | Created by: Marialaura Lazzaro </footer>
 </body>
 </html>

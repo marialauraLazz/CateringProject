@@ -26,7 +26,14 @@ public class ChefController {
 	@Autowired 
 	private ChefValidator chefValidator;
 	
-	@GetMapping("/chefs")
+	@GetMapping("/chefUtente")
+	public String getChefs(Model model) {
+		List<Chef>chefs=chefService.findAll();
+		model.addAttribute("chefs", chefs);
+		return "chef/chefElenco.html";
+	}
+	
+	@GetMapping("/admin/chefs")
 	public String getChef(Model model) {
 		model.addAttribute("chef", new Chef());
 		List<Chef>chefs=chefService.findAll();
@@ -34,13 +41,13 @@ public class ChefController {
 		return "chef/chefForm.html";
 	}
 	
-	@PostMapping("/chefs")
+	@PostMapping("/admin/chefs")
 	public String addChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
 		chefValidator.validate(chef, bindingResults);
 		if(!bindingResults.hasErrors()) {
 			chefService.save(chef);
 			model.addAttribute("chef", chef);
-			return "redirect:/chefs";
+			return "redirect:/admin/chefs";
 		}
 		List<Chef>chefs=chefService.findAll();
 		model.addAttribute("chefs", chefs);
@@ -54,20 +61,27 @@ public class ChefController {
 		return "chef/chef.html";
 	}
 	
-	@GetMapping("/toDeleteChef/{id}")
-	public String deletechef(@PathVariable("id") Long id, Model model) {
-		chefService.removeById(id);
-		return "redirect:/chefs";
+	@GetMapping("/admin/chef/{id}")
+	public String getchefperAdmin(@PathVariable("id") Long id, Model model) {
+		Chef chef=chefService.findById(id);
+		model.addAttribute("chef", chef);
+		return "chef/caratteristicheChef.html";
 	}
 	
-	@GetMapping("/toEditChef/{id}")
+	@GetMapping("/admin/toDeleteChef/{id}")
+	public String deletechef(@PathVariable("id") Long id, Model model) {
+		chefService.removeById(id);
+		return "redirect:/admin/chefs";
+	}
+	
+	@GetMapping("/admin/toEditChef/{id}")
 	public String getChefEdited(@PathVariable("id") Long id, Model model) {
 		Chef chef= chefService.findById(id);
 		model.addAttribute("chef", chef);
 		return "chef/editChef.html";
 	}
 	
-	@PostMapping("/toEditChef/{id}")
+	@PostMapping("/admin/toEditChef/{id}")
 	public String editChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, @PathVariable("id") Long id, Model model) {
 		Chef chefDaModificare= chefService.findById(id);
 		chefValidator.validate(chef, bindingResults);
@@ -77,7 +91,7 @@ public class ChefController {
 			chefDaModificare.setNazionalita(chef.getNazionalita());
 			chefDaModificare.setBuffet(chef.getBuffet());
 			chefService.save(chefDaModificare);
-			return "redirect:/chefs";
+			return "redirect:/admin/chefs";
 		}
 		return "chef/editChef.html";
 	}

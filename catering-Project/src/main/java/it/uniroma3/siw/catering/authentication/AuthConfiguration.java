@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -39,13 +40,13 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
         http
                 // authorization paragraph: qui definiamo chi può accedere a cosa
                 .authorizeRequests()
-                // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
-                .antMatchers(HttpMethod.GET, "/", "/index","/register", "/login", "/buffet/buffet", "/chef/chef", "/piatto/piatto", "/ingrediente/ingrediente", "/css/**", "/images/**").permitAll()
-                // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
+                // chiunque (autenticato o no) può accedere a queste pagine
+                .antMatchers(HttpMethod.GET, "/", "/index","/register", "/login", "/buffet/{id}", "/buffetUtente", "/chef/{id}", "/chefUtente", "/piatto/{id}", "/piattoUtente", "/ingredienteUtente", "/css/**", "/images/**").permitAll()
+                // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
-                .antMatchers(HttpMethod.GET, "/**").hasAnyAuthority(ADMIN_ROLE)
-                .antMatchers(HttpMethod.POST, "/**").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 // tutti gli utenti autenticati possono accere alle pagine rimanenti 
                 .anyRequest().authenticated()
 
@@ -61,7 +62,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 // logout paragraph: qui definiamo il logout
                 .and().logout()
                 // il logout è attivato con una richiesta GET a "/logout"
-                .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // in caso di successo, si viene reindirizzati alla /index page
                 .logoutSuccessUrl("/index")        
                 .invalidateHttpSession(true)

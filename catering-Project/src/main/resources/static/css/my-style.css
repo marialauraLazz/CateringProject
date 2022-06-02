@@ -13,6 +13,15 @@
 	position: relative;
 	}
 	
+.about-us{
+	min-height: 100vh;
+	width: 100%;
+	background-color: #3b3b3b;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	}
+	
 .header-chef{
 	min-height: 100vh;
 	width: 100%;
@@ -97,18 +106,28 @@ nav img{
 }
 
 .text-box{
-	width: 90%;
+	width: 45%;
 	color:white;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
+	float:right;
 }
 
 .text-box h1{
 	font-size: 62px;
 }
+
+.text-box h4{
+	color: white;
+}
+
+.text-box a{
+	color: white;
+}
+
 .text-box p{
 	margin: 10px o 40px;
 	font-size: 18px;
@@ -120,9 +139,10 @@ nav img{
 }
 
 .text-box-list{
-	width: 90%;
+	width: 45%;
 	margin-right: 10px;
-	text-align: right;
+	text-align: center;
+	float: right;
 }
 
 .text-box-list h4{

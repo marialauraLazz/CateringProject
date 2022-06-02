@@ -34,7 +34,7 @@ public class BuffetController {
 	@Autowired 
 	private BuffetValidator BuffetValidator;
 	
-	@GetMapping("/buffet")
+	@GetMapping("/admin/buffet")
 	public String getBuffet(Model model) {
 		model.addAttribute("buffet", new Buffet());
 		
@@ -46,13 +46,13 @@ public class BuffetController {
 		return "buffet/buffetForm.html";
 	}
 	
-	@PostMapping("/buffet")
+	@PostMapping("/admin/buffet")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResults, Model model) {
 		BuffetValidator.validate(buffet, bindingResults);
 		if(!bindingResults.hasErrors()) {
 			buffetService.save(buffet);
 			model.addAttribute("buffet", buffet);
-			return "redirect:/buffet";
+			return "redirect:/admin/buffet";
 		}
 		List<Buffet>buffets=buffetService.findAll();
 		model.addAttribute("buffets", buffets);
@@ -62,17 +62,35 @@ public class BuffetController {
 		return "buffet/buffetForm.html";
 	}
 	
+	@GetMapping("/buffetUtente")
+	public String getBuffets(Model model) {
+		
+		List<Buffet>buffets=buffetService.findAll();
+		model.addAttribute("buffets", buffets);
+		
+		List<Chef>chefs=chefService.findAll();
+		model.addAttribute("chefs", chefs);
+		return "buffet/buffetElenco.html";
+	}
+	
 	@GetMapping("/buffet/{id}")
-	public String getPiatto(@PathVariable("id") Long id, Model model) {
+	public String getBuffet(@PathVariable("id") Long id, Model model) {
 		Buffet buffet=buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
 		return "buffet/buffet.html";
 	}
 	
-	@GetMapping("/toDeleteBuffet/{id}")
+	@GetMapping("/admin/buffet/{id}")
+	public String getBuffetperAdmin(@PathVariable("id") Long id, Model model) {
+		Buffet buffet=buffetService.findById(id);
+		model.addAttribute("buffet", buffet);
+		return "buffet/caratteristicheBuffet.html";
+	}
+	
+	@GetMapping("/admin/toDeleteBuffet/{id}")
 	public String deleteBuffet(@PathVariable("id") Long id, Model model) {
 		buffetService.removeById(id);
-		return "redirect:/buffet";
+		return "redirect:/admin/buffet";
 	}
 	
 }

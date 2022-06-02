@@ -36,7 +36,7 @@ public class PiattoController {
 	@Autowired 
 	private PiattoValidator piattoValidator;
 
-	@GetMapping("/piatto")
+	@GetMapping("/admin/piatto")
 	public String getPiatto(Model model) {
 		model.addAttribute("piatto", new Piatto());
 
@@ -52,13 +52,13 @@ public class PiattoController {
 		return "piatto/piattoForm.html";
 	}
 
-	@PostMapping("/piatto")
+	@PostMapping("/admin/piatto")
 	public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResults, Model model) {
 		piattoValidator.validate(piatto, bindingResults);
 		if(!bindingResults.hasErrors()) {
 			piattoService.save(piatto);
 			model.addAttribute("piatto", piatto);
-			return "redirect:/piatto";
+			return "redirect:/admin/piatto";
 		}
 		List<Piatto>piatti=piattoService.findAll();
 		model.addAttribute("piatti", piatti);
@@ -71,17 +71,38 @@ public class PiattoController {
 		return "piatto/piattoForm.html";
 	}
 	
+	@GetMapping("/piattoUtente")
+	public String getPiatti(Model model) {
+		List<Piatto>piatti=piattoService.findAll();
+		model.addAttribute("piatti", piatti);
+		
+		List<Buffet>buffets=buffetService.findAll();
+		model.addAttribute("buffets", buffets);
+		
+		List<Ingrediente>ingredienti=ingredienteService.findAll();
+		model.addAttribute("ingredienti", ingredienti);
+		
+		return "piatto/piattoElenco.html";
+	}
+	
 	@GetMapping("/piatto/{id}")
 	public String getPiatto(@PathVariable("id") Long id, Model model) {
 		Piatto piatto=piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
 		return "piatto/piatto.html";
 	}
+	
+	@GetMapping("/admin/piatto/{id}")
+	public String getPiattoperAdmin(@PathVariable("id") Long id, Model model) {
+		Piatto piatto=piattoService.findById(id);
+		model.addAttribute("piatto", piatto);
+		return "piatto/caratteristichePiatto.html";
+	}
 
-	@GetMapping("/toDeletePiatto/{id}")
+	@GetMapping("/admin/toDeletePiatto/{id}")
 	public String deletePiatto(@PathVariable("id") Long id, Model model) {
 		piattoService.removeById(id);
-		return "redirect:/piatto";
+		return "redirect:/admin/piatto";
 	}
 
 }

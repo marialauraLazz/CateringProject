@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="css/my-style.css">
+	<link rel="stylesheet" href="../css/my-style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
@@ -10,15 +10,15 @@
 <body>
 	<section class="header-piatto">
 		<nav>
-			<img src="images/logo-catering1.png">
+			<img src="../images/logo-catering1.png">
 			<div class="nav-links">
 				<ul>
-					<li><a href="/">HOME</a></li>
+					<li><a href="/default">HOME</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div class="text-box">
-			<form th:action="@{/piatto}" method="post" th:object="${piatto}">
+			<form th:action="@{/admin/piatto}" method="post" th:object="${piatto}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
 				</div>
@@ -45,7 +45,7 @@
 						</th:block>
 						<div th:if="${#fields.hasErrors('ingredienti')}" th:errors="*{ingredienti}"></div>
 				</div>
-				<div><button type="submit" />Conferma</button></div>
+				<div><button type="submit" >Conferma</button></div>
 			</form>
 		</div>
 		<div class="text-box-list">
@@ -53,16 +53,16 @@
 			<ul>
 				<li th:each="piatto : ${piatti}">
 				<a 
-				href="piatto.html"
-				th:href="@{'/piatto' + '/' + ${piatto.id}}"
+				href="caratteristichePiatto.html"
+				th:href="@{'/admin/piatto' + '/' + ${piatto.id}}"
 				th:text="${piatto.nome} + ' ' + ${piatto.descrizione}">origano profumato</a>
-				<a th:href="@{'/toDeletePiatto' + '/' + ${piatto.id}}"><button>cancella</button></li>
+				<a th:href="@{'/admin/toDeletePiatto' + '/' + ${piatto.id}}"><button>cancella</button></a></li>
 				
 			</ul>
 		</div>
 	</section>
 	<footer>
-		footer da cambiare
+		Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 | Created by: Marialaura Lazzaro
 	</footer>
 </body>
 </html>
