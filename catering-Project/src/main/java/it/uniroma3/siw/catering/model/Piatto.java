@@ -1,5 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -29,6 +30,16 @@ public class Piatto {
 	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
+	
+	public Piatto() {
+		this(null,null);
+	}
+	
+	public Piatto(String nome, String descrizione) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.ingredienti = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return Id;
@@ -68,6 +79,10 @@ public class Piatto {
 
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
+	}
+
+	public void addIngrediente(Ingrediente i) {
+		this.getIngredienti().add(i);
 	}
 	
 }
