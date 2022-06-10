@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -23,6 +24,7 @@ import static it.uniroma3.siw.catering.model.Credentials.ADMIN_ROLE;
  */
 @Configuration
 @EnableWebSecurity
+//@EnableOAuth2Sso
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
