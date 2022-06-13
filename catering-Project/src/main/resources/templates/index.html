@@ -7,35 +7,56 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css"
+	integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM"
+	crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/52fe91be5d.js" crossorigin="anonymous"></script>
 <title>Home</title>
 </head>
 <body>
 	<section class="header">
 		<nav>
 			<img src="images/logo-catering1.png">
-			<div class="nav-links">
+			<div class="nav-links" id="navLinks">
+				<i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
 				<ul>
 					<li><a href="/">HOME</a></li>
 					<li><a th:href="@{/chefUtente}">CHEFS</a></li>
 					<li><a th:href="@{/buffetUtente}">BUFFETS</a></li>
 					<li><a th:href="@{/ingredienteUtente}">INGREDIENTI</a></li>
 					<li><a th:href="@{/piattoUtente}">PIATTI</a></li>
-					<li><a th:href="@{/login}">LOGIN</a></li>
 				</ul>
 			</div>
+			<i class="fa-solid fa-caret-down" onclick="showMenu()"></i>
 		</nav>
 		<div class="text-box">
 			<h1>CateringML!!</h1>
 		</div>
 	</section>
 	<section class="about-us">
-	<div class="text-box">
-		<img src="/images/buffet.jpg" width="40%">
-		<h1>Su di noi:</h1>
-		<p>Offriamo servizi ricercati nel settore del catering, dalla preparazione di sala al wedding & banqueting.
-			Ogni evento &egrave un momento saliente di una storia.</p>
-	</div>
+		<div class="text-box">
+			<img src="/images/buffet.jpg" width="40%">
+			<h1>Su di noi:</h1>
+			<p>Offriamo servizi ricercati nel settore del catering, dalla
+				preparazione di sala al wedding & banqueting. Ogni evento &egrave un
+				momento saliente di una storia.</p>
+		</div>
 	</section>
-	<footer> Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 | Created by: Marialaura Lazzaro </footer>
+	<footer>
+		Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 |
+		Created by: Marialaura Lazzaro | <a th:href="@{/login}">AMMINISTRATORE</a>
+	</footer>
+	
+	<script>
+		var navLinks = document.getElementById("navLinks");
+		
+		function showMenu(){
+			navLinks.style.right="0";
+		}
+		function hideMenu(){
+			navLinks.style.right="-200px";
+		}
+	</script>
 </body>
 </html>

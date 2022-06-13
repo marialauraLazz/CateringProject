@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,9 @@ public class User {
 	private Long id;
 	private String nome;
 	private String cognome;
+	
+	@OneToOne
+	private Credentials	credentials;
 	
 	public Long getId() {
 		return id;
@@ -38,6 +42,14 @@ public class User {
 	
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 
 }

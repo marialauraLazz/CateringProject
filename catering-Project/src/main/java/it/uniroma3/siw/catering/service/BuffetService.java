@@ -22,10 +22,12 @@ public class BuffetService {
 		buffetRepository.save(buffet);
 	}
 	
+	@Transactional
 	public Buffet findById(Long id) {
 		return buffetRepository.findById(id).get();
 	}
 	
+	@Transactional
 	public List<Buffet> findAll(){
 		List<Buffet> buffets=new ArrayList<>();
 		for(Buffet buffet: buffetRepository.findAll()) {
@@ -34,10 +36,12 @@ public class BuffetService {
 		return buffets;
 	}
 	
+	@Transactional
 	public void removeById(Long id) {
 		buffetRepository.deleteById(id);
 	}
 
+	@Transactional
 	public boolean alreadyExists(Buffet buffet) {
 		return buffetRepository.existsByNomeAndDescrizione(buffet.getNome(), buffet.getDescrizione());
 	}

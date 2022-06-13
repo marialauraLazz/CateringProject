@@ -5,17 +5,24 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+	<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css"
+	integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM"
+	crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/52fe91be5d.js" crossorigin="anonymous"></script>
 	<title>ingredienti</title>
 </head>
 <body>
 	<section class="header-ingrediente">
 		<nav>
 			<img src="images/logo-catering1.png">
-			<div class="nav-links">
+			<div class="nav-links" id="navLinks">
+			<i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
 				<ul>
 					<li><a href="/">HOME</a></li>
 				</ul>
 			</div>
+			<i class="fa-solid fa-caret-down" onclick="showMenu()"></i>
 		</nav>
 		<div class="text-box">
 			<h4>Elenco ingredienti:</h4>
@@ -28,5 +35,15 @@
 	<footer>
 		Catering ML S.A.S. | Via Appia Antica 12, Roma (RM) | 0612345678 | Created by: Marialaura Lazzaro
 	</footer>
+	<script>
+		var navLinks = document.getElementById("navLinks");
+		
+		function showMenu(){
+			navLinks.style.right="0";
+		}
+		function hideMenu(){
+			navLinks.style.right="-200px";
+		}
+	</script>
 </body>
 </html>

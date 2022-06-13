@@ -23,7 +23,6 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteService ingredienteService;
 
-
 	@Autowired 
 	private IngredienteValidator ingredienteValidator;
 

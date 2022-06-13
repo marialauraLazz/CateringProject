@@ -47,13 +47,14 @@ public class AuthenticationController {
 	
     @GetMapping(value = "/default")
     public String defaultAfterLogin(Model model) {
-        
+    	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "indexAmministratore";
         }
-        return "index";
+        return "index";	
     }
 	
     @PostMapping(value = { "/register" })

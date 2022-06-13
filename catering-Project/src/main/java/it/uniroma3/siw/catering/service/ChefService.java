@@ -21,10 +21,12 @@ public class ChefService {
 		chefRepository.save(chef);
 	}
 	
+	@Transactional
 	public Chef findById(Long id) {
 		return chefRepository.findById(id).get();
 	}
 	
+	@Transactional
 	public List<Chef> findAll(){
 		List<Chef> chefs=new ArrayList<>();
 		for(Chef chef: chefRepository.findAll()) {
@@ -33,10 +35,12 @@ public class ChefService {
 		return chefs;
 	}
 
+	@Transactional
 	public boolean alreadyExists(Chef chef) {
 		return chefRepository.existsByNomeAndCognomeAndNazionalita(chef.getNome(), chef.getCognome(), chef.getNazionalita());
 	}
 
+	@Transactional
 	public void removeById(Long id) {
 		chefRepository.deleteById(id);
 	}

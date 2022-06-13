@@ -40,8 +40,8 @@
 				</div>
 				<div>
 					Ingredienti:
-						<th:block th:each="ingrediente : ${ingredienti}" th:field="*{ingredienti}"> 
-							<input type="checkbox" th:text="${ingrediente.nome} + ' ' + ${ingrediente.descrizione}" th:value="${ingrediente.id}"/>
+						<th:block th:each="ingrediente : ${ingredienti}"> 
+							<input type="checkbox" th:field="*{ingredienti}" th:text="${ingrediente.nome} + ' ' + ${ingrediente.descrizione}" th:value="${ingrediente.id}"/>
 						</th:block>
 						<div th:if="${#fields.hasErrors('ingredienti')}" th:errors="*{ingredienti}"></div>
 				</div>
