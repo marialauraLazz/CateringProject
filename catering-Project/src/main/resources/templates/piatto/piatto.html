@@ -22,8 +22,8 @@
 		<div class="dettaglio-list">
 			<h4>Dettagli piatto</h4>
 			<div>
-				<span th:text="${piatto.nome}">carb</span> 
-				<span th:text="${piatto.descrizione}">Rossa</span>
+				<div><span th:text="${piatto.nome}">carb</span> 
+				<span th:text="${piatto.descrizione}">Rossa</span></div>
 				Buffet:<div th:text="${piatto.buffet.nome}">sale</div>
 				Chef:<div th:text="${piatto.buffet.chef.nome} + ' ' + ${piatto.buffet.chef.cognome}">Marco</div>
 				Ingredienti:<div th:each="ingrediente : ${piatto.ingredienti}">

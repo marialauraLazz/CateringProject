@@ -25,15 +25,15 @@
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
 				</div>
 				<div>
-					nome: <input type="text" th:field="*{nome}" />
+					<label>Nome: </label><input type="text" th:field="*{nome}" />
 					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
 				</div>
 				<div>
-					cognome: <input type="text" th:field="*{cognome}" />
+					<label>Cognome: </label><input type="text" th:field="*{cognome}" />
 					<div th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
 				</div>
 				<div>
-					nazionalita: <input type="text" th:field="*{nazionalita}" />
+					<label>Nazionalita: </label><input type="text" th:field="*{nazionalita}" />
 					<div th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></div>
 				</div>
 				<div>
