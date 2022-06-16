@@ -38,7 +38,7 @@ public class PiattoService {
 	
 	@Transactional
 	public boolean alreadyExists(Piatto  piatto) {
-		return piattoRepository.existsByNomeAndDescrizione(piatto.getNome(), piatto.getDescrizione());
+		return piattoRepository.existsByNomeAndDescrizioneAndBuffet(piatto.getNome(), piatto.getDescrizione(), piatto.getBuffet());
 	}
 
 	@Transactional

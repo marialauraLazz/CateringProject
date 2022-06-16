@@ -104,5 +104,36 @@ public class PiattoController {
 		piattoService.removeById(id);
 		return "redirect:/admin/piatto";
 	}
+	
+	@GetMapping("/admin/editPiatto/{id}")
+	public String getChefEdited(@PathVariable("id") Long id, Model model) {
+		Piatto piatto= piattoService.findById(id);
+		model.addAttribute("piatto", piatto);
+
+		List<Buffet>buffets=buffetService.findAll();
+		model.addAttribute("buffets", buffets);
+		
+		List<Ingrediente>ingredienti=ingredienteService.findAll();
+		model.addAttribute("ingredienti", ingredienti);
+		
+		return "piatto/editPiatto.html";
+	}
+	
+	@PostMapping("/admin/editPiatto/{id}")
+	public String editChef(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResults, @PathVariable("id") Long id, Model model) {
+		piattoValidator.validate(piatto, bindingResults);
+		if(!bindingResults.hasErrors()) {
+			piattoService.save(piatto);
+			return "redirect:/admin/piatto";
+		}
+
+		List<Buffet>buffets=buffetService.findAll();
+		model.addAttribute("buffets", buffets);
+		
+		List<Ingrediente>ingredienti=ingredienteService.findAll();
+		model.addAttribute("ingredienti", ingredienti);
+		
+		return  "piatto/editPiatto.html";
+	}
 
 }
