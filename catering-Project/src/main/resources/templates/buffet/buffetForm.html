@@ -18,6 +18,7 @@
 			</div>
 		</nav>
 		<div class="text-box">
+		    <h4>Inserimento buffet:</h4>
 			<form th:action="@{/admin/buffet}" method="post" th:object="${buffet}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="../css/my-style.css">
+	<link rel="stylesheet" href="../../css/my-style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-	<title>ingredienti</title>
+	<title>ingredienti modifica</title>
 </head>
 <body>
 	<section class="header-ingrediente">
 		<nav>
-			<img src="../images/logo-catering1.png">
+			<img src="../../images/logo-catering1.png">
 			<div class="nav-links">
 				<ul>
 					<li><a href="/default">HOME</a></li>
@@ -18,8 +18,8 @@
 			</div>
 		</nav>
 		<div class="text-box">
-			<h4>Inserimento ingrediente:</h4>
-			<form th:action="@{/admin/ingrediente}" method="post" th:object="${ingrediente}">
+			<h4>Modifica ingrediente:</h4>
+			<form th:action="@{'/admin/editIngrediente' + '/' + ${ingrediente.id}}" method="post" th:object="${ingrediente}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 				  	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>
 				</div>
@@ -37,15 +37,6 @@
 				</div>
 				<div><button type="submit" >Conferma</button></div>
 			</form>
-		</div>
-		<div class="text-box-list">
-			<h4>Elenco ingredienti:</h4>
-			<ul>
-				<li th:each="ingrediente : ${ingredienti}">
-				<a th:text="${ingrediente.nome} + ' ' + ${ingrediente.descrizione} + ' ' + ${ingrediente.origine}">origano profumato italia</a>
-				<a th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"><button>cancella</button></a>
-				<a th:href="@{'/admin/editIngrediente' + '/' + ${ingrediente.id}}"><button>modifica</button></a></li>
-			</ul>
 		</div>
 	</section>
 	<footer>

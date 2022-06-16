@@ -62,4 +62,20 @@ public class IngredienteController {
 		ingredienteService.removeById(id);
 		return "redirect:/admin/ingrediente";
 	}
+	
+	@GetMapping("/admin/editIngrediente/{id}")
+	public String editIngrediente(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("ingrediente", ingredienteService.findById(id));
+		return "ingrediente/editIngrediente.html";
+	}
+	
+	@PostMapping("/admin/editIngrediente/{id}")
+	public String ediIngrediente(@PathVariable("id") Long id,@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult, Model model){
+		ingredienteValidator.validate(ingrediente, bindingResult);
+		if(!bindingResult.hasErrors()) {
+			ingredienteService.save(ingrediente);
+			return "redirect:/admin/ingrediente";
+		}
+		return "ingrediente/editIngrediente.html";
+	}
 }

@@ -20,6 +20,7 @@
 			</div>
 		</nav>
 		<div class="text-box">
+			<h4>Inserimento chef:</h4>
 			<form th:action="@{/admin/chefs}" method="post" th:object="${chef}">
 				<div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">errore globale</p>

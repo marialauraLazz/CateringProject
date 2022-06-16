@@ -83,14 +83,9 @@ public class ChefController {
 	
 	@PostMapping("/admin/toEditChef/{id}")
 	public String editChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, @PathVariable("id") Long id, Model model) {
-		Chef chefDaModificare= chefService.findById(id);
 		chefValidator.validate(chef, bindingResults);
 		if(!bindingResults.hasErrors()) {
-			chefDaModificare.setNome(chef.getNome());
-			chefDaModificare.setCognome(chef.getCognome());
-			chefDaModificare.setNazionalita(chef.getNazionalita());
-			chefDaModificare.setBuffet(chef.getBuffet());
-			chefService.save(chefDaModificare);
+			chefService.save(chef);
 			return "redirect:/admin/chefs";
 		}
 		return "chef/editChef.html";
